@@ -29,13 +29,13 @@ public class TriggerZone : MonoBehaviour {
                     doorLight.color = Color.green;
                 }
             } else if (Inventory.charge > 0 && Inventory.charge < 4) {
-                textHints.SendMessage("ShowHint", "This door won't budge.. guess it needs fully charging - maybe more power cells will help...");
+                textHints.SendMessage("ShowHint", "This door won't budge... I guess it needs to be fully charged - maybe more power cells will help...");
                 transform.FindChild("door").GetComponent<AudioSource>().PlayOneShot(lockedSound);
             } else
             {
                 transform.FindChild("door").GetComponent<AudioSource>().PlayOneShot(lockedSound);
                 col.gameObject.SendMessage("HUDon");
-                textHints.SendMessage("ShowHint", "This door seems locked.. maybe that generator needs power...");
+                textHints.SendMessage("ShowHint", "This door seems locked... maybe that generator needs power...");
             }
         }
     }
