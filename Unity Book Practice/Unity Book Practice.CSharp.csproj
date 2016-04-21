@@ -61,6 +61,9 @@
     <Reference Include="UnityEditor">
       <HintPath>Library\UnityAssemblies\UnityEditor.dll</HintPath>
     </Reference>
+    <Reference Include="Assembly-UnityScript-firstpass">
+      <HintPath>Library\ScriptAssemblies\Assembly-UnityScript-firstpass.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="Unity Book Practice.CSharp.Plugins.csproj">
@@ -73,10 +76,13 @@
     <Compile Include="Assets\Scripts\CoconutWin.cs" />
     <Compile Include="Assets\Scripts\DoorManager.cs" />
     <Compile Include="Assets\Scripts\Inventory.cs" />
+    <Compile Include="Assets\Scripts\Matches.cs" />
+    <Compile Include="Assets\Scripts\Move.cs" />
     <Compile Include="Assets\Scripts\PlayerCollisions.cs" />
     <Compile Include="Assets\Scripts\PowerCell.cs" />
     <Compile Include="Assets\Scripts\Shooter.cs" />
     <Compile Include="Assets\Scripts\TargetCollision.cs" />
+    <Compile Include="Assets\Scripts\TargetHit.cs" />
     <Compile Include="Assets\Scripts\TextHints.cs" />
     <Compile Include="Assets\Scripts\ThrowTrigger.cs" />
     <Compile Include="Assets\Scripts\TidyObjects.cs" />

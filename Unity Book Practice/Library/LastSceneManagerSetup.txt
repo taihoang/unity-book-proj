@@ -1,4 +1,4 @@
 sceneSetups:
-- path: Assets/island.unity
+- path: Assets/hackathon8.unity
   isLoaded: 1
   isActive: 1
