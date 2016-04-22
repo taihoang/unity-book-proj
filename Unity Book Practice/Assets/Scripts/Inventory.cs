@@ -13,6 +13,8 @@ public class Inventory : MonoBehaviour {
     public RawImage matchGUIprefab;
     RawImage matchGUI;
     public Text textHints;
+    bool fireIsLit = false;
+    //public Particle[] fireEmitters;
     // Use this for initialization
     void Start()
     {
@@ -48,27 +50,41 @@ public class Inventory : MonoBehaviour {
     {
         haveMatches = true;
         AudioSource.PlayClipAtPoint(collectSound, transform.position);
-        RawImage matchHUD = Instantiate(matchGUIprefab, new Vector3(1.15f, 0.1f, 0), transform.rotation) as RawImage;
-        matchGUI = matchHUD;
+       // GameObject matchHUD = Instantiate(matchGUIprefab, new Vector3(0, 0, 0), transform.rotation) as GameObject;
+      //  matchGUI = matchHUD;
+
+        if(!matchGUIprefab.enabled)
+        {
+            matchGUIprefab.enabled = true;
+        }
     }
 
     void OnControllerColliderHit(ControllerColliderHit col)
     {
         if(col.gameObject.name == "campfire")
         {
-            LightFire(col.gameObject);
+            if (haveMatches && !fireIsLit)
+            {
+                LightFire(col.gameObject);
+            } else if(!haveMatches && !fireIsLit)
+            {
+                textHints.SendMessage("ShowHint", "I could use this campfire to signal for help... if only I could light it...");
+            }
         }
     }
 
     void LightFire(GameObject campfire)
     {
-        ParticleEmitter[] fireEmitters;
-        fireEmitters = campfire.GetComponentsInChildren<ParticleEmitter>();
-        foreach(ParticleEmitter emitter in fireEmitters)
+        fireIsLit = true;
+        ParticleSystem[] fireEmitters;
+        fireEmitters = campfire.GetComponentsInChildren<ParticleSystem>();
+        foreach(ParticleSystem emitter in fireEmitters)
         {
-            emitter.emit = true;
+            print(emitter);
+            emitter.Play();
         }
-        Destroy(matchGUI);
+        matchGUIprefab.enabled = false;
+        //  Destroy(matchGUI);
         haveMatches = false;
         campfire.GetComponent<AudioSource>().Play(); 
     }
